@@ -2,9 +2,9 @@ name: Ambiente de Homologação
 
 on:
   push:
-    branches: [ "homologacao" ]
+    branches: [ "Homologacao", "homologacao" ]
   pull_request:
-    branches: [ "homologacao" ]
+    branches: [ "Homologacao", "homologacao" ]
 
 jobs:
   build:
