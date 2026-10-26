@@ -50,16 +50,19 @@ jobs:
           script: |
             echo "Conectado com sucesso na EC2!"
 
-            # 1. Parar e desativar o Nginx estático do SO para liberar a porta 80
-            sudo systemctl stop nginx 2>/dev/null || true
-            sudo systemctl disable nginx 2>/dev/null || true
-
-            # 2. Fazer o pull da imagem mais recente do Docker Hub
+            # 1. Baixar a imagem mais recente
             sudo docker pull denisgoes/homologacao:latest
 
-            # 3. Parar e remover o container anterior (se existir)
-            sudo docker stop homo_leopoldina 2>/dev/null || true
-            sudo docker rm homo_leopoldina 2>/dev/null || true
+            # 2. Identificar e PARAR qualquer container rodando na porta 80
+            CONTAINER_PORT_80=$(sudo docker ps -q --filter "publish=80")
+            if [ -n "$CONTAINER_PORT_80" ]; then
+              echo "Parando container existente na porta 80: $CONTAINER_PORT_80"
+              sudo docker stop $CONTAINER_PORT_80
+              sudo docker rm $CONTAINER_PORT_80
+            fi
 
-            # 4. Iniciar o novo container mapeando a porta 80
+            # 3. Forçar remocao do container antigo com nome homo_leopoldina se existir
+            sudo docker rm -f homo_leopoldina 2>/dev/null || true
+
+            # 4. Subir o novo container
             sudo docker run -d --name homo_leopoldina -p 80:80 --restart always denisgoes/homologacao:latest
