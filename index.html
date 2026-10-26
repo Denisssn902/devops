@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canal Ao Vivo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="#">
+      <span class="logo-dot"></span> CanalLive
+    </a>
+    <nav>
+      <a href="#ao-vivo">Ao vivo</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#sobre">Sobre</a>
+      <a class="btn btn-small" href="#contato">Seguir</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- AO VIVO -->
+    <section id="ao-vivo" class="stage">
+      <div class="player-wrap">
+        <div class="player">
+          <span class="badge-live"><i></i> AO VIVO</span>
+          <span class="viewers">👁 1.284 assistindo</span>
+          <div class="play-btn" aria-hidden="true"></div>
+          <div class="player-bar">
+            <div class="progress"><span></span></div>
+            <div class="controls">
+              <span>▶</span><span>🔊</span><span class="grow"></span><span>⚙</span><span>⛶</span>
+            </div>
+          </div>
+        </div>
+        <div class="stream-info">
+          <h1>Maratona de Código: construindo um site em 2 horas</h1>
+          <p class="meta">Programação • Português • Iniciou há 47 min</p>
+          <div class="tags">
+            <span>#html</span><span>#css</span><span>#aovivo</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="chat" aria-label="Chat ao vivo">
+        <div class="chat-head">Chat da transmissão</div>
+        <ul class="chat-list">
+          <li><b class="c1">ana_dev</b> chegou agora, o que perdi? 👀</li>
+          <li><b class="c2">lucas.sh</b> esse layout ficou limpo demais</li>
+          <li><b class="c3">mod_bia</b> lembrem: respeito no chat 💜</li>
+          <li><b class="c4">rafa_tech</b> manda o código depois!</li>
+          <li><b class="c1">ana_dev</b> 🔥🔥🔥</li>
+          <li><b class="c2">lucas.sh</b> flexbox ou grid?</li>
+          <li><b class="c5">julia</b> grid pra tudo kkk</li>
+        </ul>
+        <div class="chat-input">Envie uma mensagem…</div>
+      </aside>
+    </section>
+
+    <!-- AGENDA -->
+    <section id="agenda" class="section">
+      <h2>Próximas lives</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="card-day">SEG</span>
+          <h3>Bate-papo e dúvidas</h3>
+          <p>19h00 • Responder perguntas da comunidade.</p>
+        </article>
+        <article class="card">
+          <span class="card-day">QUA</span>
+          <h3>Projeto do zero</h3>
+          <p>20h00 • Construindo um app passo a passo.</p>
+        </article>
+        <article class="card">
+          <span class="card-day">SEX</span>
+          <h3>Revisão de código</h3>
+          <p>21h00 • Vamos analisar projetos enviados por vocês.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section about">
+      <h2>Sobre o canal</h2>
+      <p>
+        Aqui rolam transmissões ao vivo sobre tecnologia, projetos e muito
+        aprendizado em comunidade. Entre no chat, tire dúvidas e acompanhe
+        tudo em tempo real.
+      </p>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section cta">
+      <h2>Não perca a próxima live</h2>
+      <p>Siga o canal e ative as notificações.</p>
+      <a class="btn" href="#">🔔 Ativar notificações</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 CanalLive • Feito com HTML e CSS</p>
+  </footer>
+
+</body>
+</html>
