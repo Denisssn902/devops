@@ -1,0 +1,253 @@
+:root {
+  --bg: #0e0e13;
+  --panel: #18181f;
+  --panel-2: #20202a;
+  --text: #ececf1;
+  --muted: #9a9aab;
+  --accent: #9146ff;
+  --live: #ff2e4d;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Topbar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: rgba(14, 14, 19, .9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #26262f;
+}
+
+.logo { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.logo-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--live);
+  animation: pulse 1.4s infinite;
+}
+
+.topbar nav { display: flex; align-items: center; gap: 20px; }
+.topbar nav a { color: var(--muted); font-size: .95rem; transition: color .2s; }
+.topbar nav a:hover { color: var(--text); }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: transform .15s, filter .2s;
+}
+.btn:hover { transform: translateY(-2px); filter: brightness(1.12); }
+.btn-small { padding: 7px 16px; font-size: .9rem; }
+
+/* ---------- Palco ao vivo ---------- */
+.stage {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  max-width: 1300px;
+  margin: 24px auto;
+  padding: 0 24px;
+}
+
+.player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 30%, #4a1fa8 0%, transparent 55%),
+    radial-gradient(circle at 75% 70%, #a81f5a 0%, transparent 50%),
+    #14141c;
+  display: grid;
+  place-items: center;
+}
+
+.badge-live {
+  position: absolute; top: 14px; left: 14px;
+  display: flex; align-items: center; gap: 6px;
+  background: var(--live);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.badge-live i {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff;
+  animation: blink 1s infinite;
+}
+
+.viewers {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(0, 0, 0, .55);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: .82rem;
+}
+
+.play-btn {
+  width: 84px; height: 84px; border-radius: 50%;
+  background: rgba(255, 255, 255, .15);
+  border: 2px solid rgba(255, 255, 255, .5);
+  position: relative;
+  transition: transform .2s;
+}
+.play-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-35%, -50%);
+  border-left: 26px solid #fff;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+}
+.player:hover .play-btn { transform: scale(1.08); }
+
+.player-bar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 10px 14px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+}
+.progress { height: 4px; background: rgba(255, 255, 255, .25); border-radius: 2px; }
+.progress span { display: block; width: 100%; height: 100%; background: var(--live); border-radius: 2px; }
+.controls { display: flex; gap: 14px; margin-top: 8px; font-size: .9rem; }
+.grow { flex: 1; }
+
+.stream-info { padding: 16px 4px; }
+.stream-info h1 { font-size: 1.4rem; }
+.meta { color: var(--muted); font-size: .9rem; margin: 4px 0 10px; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tags span {
+  background: var(--panel-2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+/* ---------- Chat ---------- */
+.chat {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid #26262f;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 420px;
+}
+.chat-head {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: .9rem;
+  border-bottom: 1px solid #26262f;
+}
+.chat-list {
+  list-style: none;
+  flex: 1;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: .88rem;
+}
+.chat-list b { margin-right: 6px; }
+.c1 { color: #ff7a59; } .c2 { color: #4cc9f0; } .c3 { color: #7bd88f; }
+.c4 { color: #f7b731; } .c5 { color: #e56bff; }
+
+.chat-input {
+  margin: 12px;
+  padding: 10px 14px;
+  background: var(--panel-2);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+/* ---------- Seções ---------- */
+.section {
+  max-width: 1100px;
+  margin: 56px auto;
+  padding: 0 24px;
+}
+.section h2 { font-size: 1.6rem; margin-bottom: 20px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid #26262f;
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: transform .2s, border-color .2s;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.card-day {
+  display: inline-block;
+  background: var(--accent);
+  font-size: .75rem;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.card h3 { margin-bottom: 6px; }
+.card p { color: var(--muted); font-size: .92rem; }
+
+.about p { color: var(--muted); max-width: 680px; }
+
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #2a1466, #5a1445);
+  border-radius: var(--radius);
+  padding: 48px 24px;
+}
+.cta p { color: #d8d0f0; margin-bottom: 20px; }
+
+footer {
+  text-align: center;
+  padding: 28px;
+  color: var(--muted);
+  font-size: .85rem;
+  border-top: 1px solid #26262f;
+}
+
+/* ---------- Animações ---------- */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 46, 77, .7); }
+  70%  { box-shadow: 0 0 0 10px rgba(255, 46, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 46, 77, 0); }
+}
+@keyframes blink {
+  50% { opacity: .25; }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .stage { grid-template-columns: 1fr; }
+  .chat { min-height: 320px; }
+  .topbar nav a:not(.btn) { display: none; }
+}
